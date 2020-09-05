@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'user'], function() {
     Route::get('diary', 'User\DiaryController@add');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
