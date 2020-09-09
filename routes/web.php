@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'user'], function() {
-    Route::get('diary', 'User\DiaryController@add');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
+    Route::get('home', 'User\CalendarController@index')->name('home');
+    
+    Route::get('diary', 'User\DiaryController@diary');
+    Route::get('edit', 'User\DiaryController@edit');
+    Route::post('edit', 'User\DiaryController@create');
 });
 
 Auth::routes();

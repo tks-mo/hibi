@@ -1,7 +1,11 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #EEEEEE;
-  color: #333333;
+  background-color: #fcfeff;
+  color: #4a4c4d;
+}
+
+.card-body {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
