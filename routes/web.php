@@ -18,13 +18,16 @@ Route::get('/', function () {
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('home', 'User\CalendarController@index')->name('home');
     
-    Route::get('diary', 'User\DiaryController@diary');
-    Route::post('diary', 'User\DiaryController@diary');
+    // 日記画面
+    Route::get('diary', 'User\DiaryController@diary_show');
+    Route::post('diary', 'User\DiaryController@diary_show');
+    // 編集画面
+    Route::get('edit', 'User\DiaryController@edit_show');
+    Route::post('edit', 'User\DiaryController@edit_show');
+    // 追加＆更新
+    Route::post('diary', 'User\DiaryController@diary_create');
+    Route::post('edit', 'User\ScheduleController@schedule_create');
     
-    Route::get('edit', 'User\DiaryController@edit');
-    Route::post('edit', 'User\DiaryController@edit');
-    
-    Route::post('diary', 'User\DiaryController@create');
 });
 
 Auth::routes();

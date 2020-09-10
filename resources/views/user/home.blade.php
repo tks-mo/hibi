@@ -25,7 +25,7 @@
                 <th>金</th>
                 <th>土</th>
             </tr>
-            <form action="{{ action('User\DiaryController@diary') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ action('User\DiaryController@diary_show') }}" method="post" enctype="multipart/form-data">
             @foreach ($weeks as $week)
                 @csrf
                 

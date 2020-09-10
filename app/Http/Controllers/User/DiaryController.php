@@ -7,18 +7,18 @@ use App\Http\Controllers\Controller;
 
 class DiaryController extends Controller
 {
-    public function diary(Request $request)
+    public function diary_show(Request $request)
     {
         
         return view('user.diary');
     }
     
-    public function edit(Request $request)
+    public function edit_show(Request $request)
     {
         return view('user.edit');
     }
     
-    public function create(Request $request)
+    public function diary_create(Request $request)
     {
         return redirect('user/diary');
     }

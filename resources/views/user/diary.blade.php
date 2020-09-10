@@ -5,14 +5,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h2>日記画面</h2>
         </div>
-    </div>
         
-    <div class="row">
-        <div class="col-md-8">
-            <a href="{{ action('User\DiaryController@edit') }}"><input type="submit" class="btn btn btn-outline-secondary" value="編集する"></a>
+        <div class="col-md-6 text-right">
+            <a href="{{ action('User\DiaryController@edit_show') }}"><button type="submit" class="btn btn-outline-secondary">編集する</button></a>
         </div>
     </div>
     
@@ -26,6 +24,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="col-md-4">
+            
         </div>
     </div>
         
