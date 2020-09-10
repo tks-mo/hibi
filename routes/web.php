@@ -19,8 +19,12 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('home', 'User\CalendarController@index')->name('home');
     
     Route::get('diary', 'User\DiaryController@diary');
+    Route::post('diary', 'User\DiaryController@diary');
+    
     Route::get('edit', 'User\DiaryController@edit');
-    Route::post('edit', 'User\DiaryController@create');
+    Route::post('edit', 'User\DiaryController@edit');
+    
+    Route::post('diary', 'User\DiaryController@create');
 });
 
 Auth::routes();

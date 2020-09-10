@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 
 class DiaryController extends Controller
 {
-    public function diary()
+    public function diary(Request $request)
     {
+        
         return view('user.diary');
     }
     
-    public function edit()
+    public function edit(Request $request)
     {
         return view('user.edit');
     }
@@ -21,6 +22,5 @@ class DiaryController extends Controller
     {
         return redirect('user/diary');
     }
-    
     
 }

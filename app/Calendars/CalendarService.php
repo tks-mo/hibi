@@ -4,6 +4,8 @@ namespace App\Calendars;
 
 use Carbon\Carbon;
 
+// date_default_timezone_set('Asia/Tokyo');
+
 class CalendarService
 {
     /**
@@ -26,11 +28,11 @@ class CalendarService
         for ($day = 1; $day <= $days_in_month; $day++, $day_of_week++) {
             $date = self::getYm() . '-' . $day;
             if (Carbon::now()->format('Y-m-j') === $date) {
-                $week .= '<td class="today">' . $day;
+                $week .= '<td class="today">' . '<input type="submit" name="day" value="'.$day.'">';
             } else {
-                $week .= '<td>' . $day;
+                $week .= '<td>' . '<input type="submit" name="day" value="'.$day.'">';
             }
-            $week .= '</td>';
+            $week .= '</td>'; 
 
             // 週の終わり、または月末
             if (($day_of_week % 7 === 6) || ($day === $days_in_month)) {

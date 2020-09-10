@@ -10,9 +10,9 @@
     <div class="content">
         
         <div>
-            <a href="?ym={{ $prev }}">&lt;</a>
+            <a class="ym" href="?ym={{ $prev }}">&lt;</a>
             <span class="month">{{ $month }}</span>
-            <a href="?ym={{ $next }}">&gt;</a>
+            <a class="ym" href="?ym={{ $next }}">&gt;</a>
         </div>
 
         <table class="table table-bordered">
@@ -25,9 +25,13 @@
                 <th>金</th>
                 <th>土</th>
             </tr>
+            <form action="{{ action('User\DiaryController@diary') }}" method="post" enctype="multipart/form-data">
             @foreach ($weeks as $week)
+                @csrf
+                
                 {!! $week !!}
             @endforeach
+            </form>
         </table>
 
     </div>
