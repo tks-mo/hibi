@@ -68,7 +68,7 @@
     
     <div class="row">
         <div class="col-md-10">
-            <h4>登録済み</h4>
+            <h4>登録済みタイムスケジュール</h4>
             <table class="table">
                 <tr>
                     <td>開始時間</td>
