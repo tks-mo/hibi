@@ -11,7 +11,7 @@
         <div class="col-md-6 mx-0">
             <div class="card bg-transparent">
                 <div class="card-body">
-                    <div class="card-title text-md-center"><h3>{{ __('messages.Register') }}</h3></div>
+                    <div class="card-title text-md-center"><h3>新規ユーザー登録</h3></div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 

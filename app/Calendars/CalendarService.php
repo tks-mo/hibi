@@ -28,11 +28,11 @@ class CalendarService
         for ($day = 1; $day <= $days_in_month; $day++, $day_of_week++) {
             $date = self::getYm() . '-' . $day;
             if (Carbon::now()->format('Y-m-j') === $date) {
-                $week .= '<td class="today">' . '<input type="submit" name="day" value="'.$day.'">';
+                $week .= '<td class="today"><button type="submit">' . $day;
             } else {
-                $week .= '<td>' . '<input type="submit" name="day" value="'.$day.'">';
+                $week .= '<td><button type="submit">' . $day;
             }
-            $week .= '</td>'; 
+            $week .= '</button></td>';
 
             // 週の終わり、または月末
             if (($day_of_week % 7 === 6) || ($day === $days_in_month)) {

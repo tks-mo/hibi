@@ -1,20 +1,18 @@
 @extends('layouts.user')
-@section('title', 'MyCalendar')
 
 @push('css')
 <link href="{{ secure_asset('css/calendar.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
-<div class="flex-center position-ref full-height">
-    <div class="content">
-        
-        <div>
-            <a class="ym" href="?ym={{ $prev }}">&lt;</a>
-            <span class="month">{{ $month }}</span>
-            <a class="ym" href="?ym={{ $next }}">&gt;</a>
+<div class="container">
+    <div class="row">
+        <div class="col-auto mx-auto">
+            <a class="y" href="?ym={{ $prev }}">&lt;</a>
+                <span class="month">{{ $month }}</span>
+            <a class="y" href="?ym={{ $next }}">&gt;</a>
         </div>
-
+        
         <table class="table table-bordered">
             <tr>
                 <th>日</th>
@@ -33,10 +31,6 @@
             @endforeach
             </form>
         </table>
-
     </div>
-    {{-- .content --}}
 </div>
-{{-- .flex-center .position-ref .full-height --}}
-
 @endsection
