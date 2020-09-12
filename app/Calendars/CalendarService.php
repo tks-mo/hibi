@@ -26,13 +26,13 @@ class CalendarService
         $week .= str_repeat('<td></td>', $day_of_week);
 
         for ($day = 1; $day <= $days_in_month; $day++, $day_of_week++) {
-            $date = self::getYm() . '-' . $day;
-            if (Carbon::now()->format('Y-m-j') === $date) {
-                $week .= '<td class="today"><button type="submit">' . $day;
+            $date = str_replace('-','',self::getYm() . '-' . str_pad($day,2,0,STR_PAD_LEFT));
+            if (Carbon::now()->format('Ymj') === $date) {
+                $week .= '<td class="today"><a href="diary?selectedDate=' . $date .'">' . $day;
             } else {
-                $week .= '<td><button type="submit">' . $day;
+                $week .= '<td><a href="diary?selectedDate=' . $date .'">' . $day;
             }
-            $week .= '</button></td>';
+            $week .= '</a></td>';
 
             // 週の終わり、または月末
             if (($day_of_week % 7 === 6) || ($day === $days_in_month)) {

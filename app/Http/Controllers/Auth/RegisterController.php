@@ -69,4 +69,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    
+    // 新規登録画面で登録すると、'user/home'にリダイレクトする
+    public function redirectPath()
+    {
+        return 'user/home';
+    }
 }
+

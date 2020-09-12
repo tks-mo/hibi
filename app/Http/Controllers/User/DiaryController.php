@@ -9,7 +9,8 @@ class DiaryController extends Controller
 {
     public function diary_show(Request $request)
     {
-        
+        $a = $request->selectedDate;
+        // dd($a);
         return view('user.diary');
     }
     

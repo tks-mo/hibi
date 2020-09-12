@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
@@ -32,4 +32,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
