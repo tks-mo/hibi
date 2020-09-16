@@ -11,7 +11,7 @@
     
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ action('User\DiaryController@diary_create') }}" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class ="card card-body">
                     <div class="col-md-12 text-right">
@@ -44,7 +44,7 @@
     
         <div class="col-md-4">
             <h5 class="my-2">New</h5>
-            <form action="{{ action('User\ScheduleController@schedule_create') }}" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-body">
                     <div class="form-group">

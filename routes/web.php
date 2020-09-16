@@ -26,8 +26,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('edit', 'User\DiaryController@edit_show');
     // 追加＆更新
     Route::post('diary', 'User\DiaryController@diary_create');
-    Route::post('edit', 'User\ScheduleController@schedule_create');
-    
 });
 
 Auth::routes();

@@ -1,7 +1,45 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #fcfeff;
-  color: #4a4c4d;
+  background-color: #fafcfe;
+  color: #5a5c5e;
+}
+
+.form-control:focus {
+  border-color: #b4c8dc;
+  box-shadow: 0 0 0 0.2rem rgba(160, 180, 220, 0.2);
+}
+
+.btn-outline-secondary {
+  color: #8ca0b4;
+  border-color: #8ca0b4;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #8ca0b4;
+  border-color: #8ca0b4;
+}
+
+.btn-outline-secondary:focus,
+.btn-outline-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(120, 140, 180, 0.5);
+}
+
+.btn-outline-secondary.disabled,
+.btn-outline-secondary:disabled {
+  color: #8ca0b4;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active,
+.btn-outline-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-secondary.dropdown-toggle {
+  background-color: #8ca0b4;
+  border-color: #8ca0b4;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(120, 140, 180, 0.5);
 }
 
