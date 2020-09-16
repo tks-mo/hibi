@@ -4,18 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>hibi</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #ccc;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
+                background-color: #d3d6dd;
+                color: #fafcfe;
+                font-family: 'Roboto', sans-serif;
                 height: 100vh;
                 margin: 0;
             }
@@ -34,56 +33,57 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 160px;
             }
 
             .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
+                color: #fafcfe;
+                padding: 10px 10px;
+                margin: 16px;
+                font-size: 20px;
                 text-decoration: none;
-                text-transform: uppercase;
             }
 
+            .links a:hover {
+                border: 1px solid;
+            }
+            
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
+            }
+            
+            p {
+                color: #fafcfe;
             }
         </style>
     </head>
+    
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('user/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
+                <p>日常管理アプリ</p>
                 <div class="title m-b-md">
                     hibi
                 </div>
 
+                @if (Route::has('login'))
+                    <div class="links">
+                        @auth
+                            <a href="{{ url('user/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">ログイン</a>
+    
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">新規登録</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
             </div>
         </div>
     </body>
