@@ -1,8 +1,8 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #fafcfe;
-  color: #5a5c5e;
+  background-color: #fcfcfc;
+  color: #3c3c3c;
 }
 
 .form-control:focus {
@@ -42,4 +42,3 @@ body {
 .show > .btn-outline-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(120, 140, 180, 0.5);
 }
-

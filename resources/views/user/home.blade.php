@@ -7,29 +7,30 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-auto mx-auto">
-            <a class="y" href="?ym={{ $prev }}">&lt;</a>
-                <span class="month">{{ $month }}</span>
-            <a class="y" href="?ym={{ $next }}">&gt;</a>
-        </div>
-        
-        <table class="table table-bordered">
-            <tr>
-                <th>日</th>
-                <th>月</th>
-                <th>火</th>
-                <th>水</th>
-                <th>木</th>
-                <th>金</th>
-                <th>土</th>
-            </tr>
-            
-            @foreach ($weeks as $week)
+        <div class="col-md-12 mx-auto">
+            <div class="text-center">
+                <a class="y" href="?ym={{ $prev }}">&lt;</a>
+                    <span class="month">{{ $month }}</span>
+                <a class="y" href="?ym={{ $next }}">&gt;</a>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <th>日</th>
+                    <th>月</th>
+                    <th>火</th>
+                    <th>水</th>
+                    <th>木</th>
+                    <th>金</th>
+                    <th>土</th>
+                </tr>
                 
-                {!! $week !!}
-            @endforeach
-            
-        </table>
+                @foreach ($weeks as $week)
+                    
+                    {!! $week !!}
+                @endforeach
+                
+            </table>
+        </div>
     </div>
 </div>
 @endsection

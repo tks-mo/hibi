@@ -5,18 +5,20 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2>編集画面(yyyy/mm/dd)</h2>
+            <h2>{{ $ymd }}</h2>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-8">
-            <form action="" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class ="card card-body">
+            <div class ="card card-body">
+                <form action="{{ action('User\DiaryController@update') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="col-md-12 text-right">
                         <button type="submit" class="btn btn-outline-secondary">記録する</button>
                     </div>
+                    
+                    <input type="hidden" name="selected_date" value="{{ $selected_date }}">
                     
                     <div class="form-group row">
                         <div class="col-md-10 mx-auto">
@@ -27,25 +29,29 @@
                     
                     <div class="form-check row">
                         <div class="col-md-10 mx-auto">
-                            <label class="form-check-label" for="remove"></label>
-                            <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
+                            <label class="form-check-label" for="image_remove"></label>
+                            <input type="checkbox" class="form-check-input" name="image_remove" value="true">画像を削除</input>
                         </div>
                     </div>
                     
-                    <div class="form-group row mb-0">
+                    <div class="form-group row">
                         <div class="col-md-10 mx-auto">
                             <label for="diary_text"></label>
-                            <textarea class="form-control" placeholder="日記" name="diary_text" rows="20"></textarea>
+                            <textarea class="form-control" name="diary_text" rows="20">@if($diary){{ $diary->diary_text }}@endif</textarea>
                         </div>
                     </div>
+                </form>
+                
+                <div class="col-md-12 text-right">
+                    <a href="delete?selectedDate={{ $selected_date }}" class="btn btn-outline-danger" role="button">削除する</a>
                 </div>
-            </form>
+            </div>
         </div>
     
         <div class="col-md-4">
             <h5 class="my-2">New</h5>
             <form action="" method="post" enctype="multipart/form-data">
-                @csrf
+                <!--@csrf-->
                 <div class="card card-body">
                     <div class="form-group">
                         <label for="start_time">開始時間</label>

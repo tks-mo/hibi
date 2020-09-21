@@ -1,29 +1,33 @@
 .y,
 .month {
-    font-size: 20px;
-    color: #B0C4DE;
+    font-size: 24px;
+    color: #708090;
+}
+
+.table　{
+    height: 100%;
 }
 
 th {
-    height: 40px;
+    height: 20px;
     text-align: center;
 }
 
 td {
-    height: 80px;
+    height: 100px;
     text-align: center;
 }
 
 th:nth-of-type(1),
 td:nth-of-type(1) {
-    color: #B0C4DE;
+    color: #708090;
 }
 
 th:nth-of-type(7),
 td:nth-of-type(7) {
-    color: #B0C4DE;
+    color: #708090;
 }
 
 .today {
-    background: #F0F8FF;
+    background: #f7f8fa;
 }

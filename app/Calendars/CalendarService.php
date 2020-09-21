@@ -27,7 +27,7 @@ class CalendarService
 
         for ($day = 1; $day <= $days_in_month; $day++, $day_of_week++) {
             $date = str_replace('-','',self::getYm() . '-' . str_pad($day,2,0,STR_PAD_LEFT));
-            if (Carbon::now()->format('Ymj') === $date) {
+            if (Carbon::now()->format('Ymd') === $date) {
                 $week .= '<td class="today"><a href="diary?selectedDate=' . $date .'">' . $day;
             } else {
                 $week .= '<td><a href="diary?selectedDate=' . $date .'">' . $day;
