@@ -13,4 +13,8 @@ class Diary extends Model
       return $this->hasOne('App\Day');
     }
     
+    public static $rules = array(
+      'image_path' => 'required_without:diary_text|file|image',
+      'diary_text' => 'required_without:image_path|max:255',
+      );
 }

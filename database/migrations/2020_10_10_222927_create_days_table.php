@@ -15,8 +15,8 @@ class CreateDaysTable extends Migration
     {
         Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('date', 8);
-            $table->unsignedInteger('diary_id');
+            $table->DATE('day_date');
+            $table->unsignedInteger('diary_id')->nullable();
             $table->foreign('diary_id')->references('id')->on('diaries')->onDelete('cascade');
             $table->timestamps();
         });

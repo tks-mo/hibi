@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{ $ymd }}</h2>
+            <h2>{{ $Ymd }}</h2>
         </div>
     </div>
     
@@ -15,7 +15,7 @@
                 <form action="{{ action('User\ScheduleController@create') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <input type="hidden" name="selected_date" value="{{ $selected_date }}">
+                        <input type="hidden" name="selectedDate" value="{{ $selectedDate }}">
                         
                         <label for="start_time">開始時間</label>
                         <input type="time" name="start_time" value="{{ old('start_time') }}">
@@ -58,19 +58,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($schedules as $s)
-                    <tr>
-                        <td>{{ substr($s->start_time, 0, 5) }}</td>
-                        <td>{{ substr($s->end_time, 0, 5) }}</td>
-                        <td>{{ $s->schedule_text }}</td>
-                        <td>
-                            <a href="{{ action('User\ScheduleController@schedule_delete', ['id' => $s->id]) }}">
-                                <button type="submit" class="btn btn-outline-danger btn-sm">削除</button>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach($schedule as $s)
+                        <tr>
+                            <td>{{ substr($s->start_time, 0, 5) }}</td>
+                            <td>{{ substr($s->end_time, 0, 5) }}</td>
+                            <td>{{ $s->schedule_text }}</td>
+                            <td>
+                                <a href="{{ action('User\ScheduleController@schedule_delete', ['id' => $s->id]) }}">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">削除</button>
+                                </a>
+                            </td>
+                        </tr>
                     @endforeach
-                </tbody>
             </table>
         </div>
     </div>

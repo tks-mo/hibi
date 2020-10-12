@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{ $ymd }}</h2>
+            <h2>{{ $Ymd }}</h2>
         </div>
     </div>
     
@@ -14,21 +14,18 @@
             <div class ="card card-body">
                 <div class="form-group row">
                     <div class="col-md-10 mx-auto">
-                        <img class="card-img-top">
-                        @if($diary) {{ $diary->image_path }} @endif
+                        @if($diary['image_path']) <img src="{{ asset('/storage/image/' . $diary->image_path) }}"> @endif
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <div class="col-md-10 mx-auto">
-                        @if($diary)
-                            {{ $diary->diary_text }}
-                        @endif
+                        @if($diary['diary_text']) {{ $diary->diary_text }} @endif
                     </div>
                 </div>
                 
                 <div class="text-right">
-                    <a href="edit?selectedDate={{ $selected_date }}" class="btn btn-outline-secondary" role="button">編集する</a>
+                    <a href="edit?selectedDate={{ $selectedDate }}" class="btn btn-outline-secondary" role="button">編集する</a>
                 </div>
             </div>
         </div>
@@ -43,16 +40,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($schedules as $s)
                     <tr>
-                        <td>{{ substr($s->start_time, 0, 5) }} - {{ substr($s->end_time, 0, 5) }}</td>
-                        <td>{{ $s->schedule_text }}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
-                    @endforeach
                 </tbody>
             </table>
             <div class="col-md-12 text-right">
-                <a href="create?selectedDate={{ $selected_date }}" class="btn btn-outline-secondary" role="button">編集する</a>
+                <a href="create?selectedDate={{ $selectedDate }}" class="btn btn-outline-secondary" role="button">作成する</a>
             </div>
         </div>
     </div>

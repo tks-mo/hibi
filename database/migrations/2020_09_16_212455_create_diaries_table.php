@@ -15,8 +15,8 @@ class CreateDiariesTable extends Migration
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('diary_text')->nullable();
             $table->string('image_path')->nullable();
+            $table->string('diary_text', 255)->nullable();
             $table->timestamps();
         });
     }

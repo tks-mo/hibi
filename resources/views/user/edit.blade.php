@@ -5,25 +5,39 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{ $ymd }}</h2>
+            <h2>{{ $Ymd }}</h2>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-8">
             <div class ="card card-body">
+                <div class="text-danger">
+                    @if(count($errors) > 0)
+                        <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    @endif
+                </div>
+        
                 <form action="{{ action('User\DiaryController@update') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="text-right">
                         <button type="submit" class="btn btn-outline-secondary">記録する</button>
                     </div>
                     
-                    <input type="hidden" name="selected_date" value="{{ $selected_date }}">
+                    <input type="hidden" name="selectedDate" value="{{ $selectedDate }}">
                     
                     <div class="form-group row">
                         <div class="col-md-10 mx-auto">
-                            @if($diary) {{ $diary->image_path }} @endif
-                            
+                            @if($diary['image_path']) <img src="{{ asset('/storage/image/' . $diary->image_path) }}"> @endif
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-md-10 mx-auto">
                             <label for="image"></label>
                             <input type="file" class="form-control-file" name="image">
                         </div>
@@ -39,16 +53,17 @@
                     <div class="form-group row">
                         <div class="col-md-10 mx-auto">
                             <label for="diary_text"></label>
-                            <textarea class="form-control" name="diary_text" rows="20">@if($diary) {{ $diary->diary_text }} @endif</textarea>
+                            <textarea class="form-control" name="diary_text" maxlength="255" rows="8">@if($diary['diary_text']) {{ $diary->diary_text }} @endif</textarea>
                         </div>
                     </div>
                 </form>
                 
                 <div class="text-right">
-                    <a href="diary_delete?selectedDate={{ $selected_date }}" class="btn btn-outline-danger" role="button">削除する</a>
+                    <a href="diary_delete?selectedDate={{ $selectedDate }}" class="btn btn-outline-danger" role="button">削除する</a>
                 </div>
             </div>
         </div>
+                
     </div>
 </div>
 @endsection

@@ -8,10 +8,10 @@ class Day extends Model
 {
     protected $guarded = array('id');
 
-    public static $rules = array(
-        'date' => 'required',
-        'diary_id' => 'required',
-    );
+    public function schedules()
+    {
+      return $this->hasMany('App\Schedule');
+    }
     
     public function diary()
     {

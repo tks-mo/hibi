@@ -13,88 +13,64 @@ class DiaryController extends Controller
 {
     public function show(Request $request)
     {
-        $selected_date = $request->selectedDate;
-        $diary_id = Day::where('date', $selected_date)->value('diary_id');
-        $diary = Diary::find($diary_id);
+        $selectedDate = $request->selectedDate;
+        $Ymd = date('Y年m月d日',strtotime($selectedDate));
         
-        $schedules = Schedule::where('schedule_date', $selected_date)->orderBy('start_time', 'asc')->get();
+        $id = Day::where('day_date', $selectedDate)->value('diary_id');
+        $diary = Diary::find($id);
         
-        $y = intval(substr($selected_date, 0, 4));
-        $m = intval(substr($selected_date, 4, 2));
-        $d = intval(substr($selected_date, 6, 2));
-        $ymd = "$y 年 $m 月 $d 日";
-        
-        return view('user.diary', ['selected_date' => $selected_date, 'diary' => $diary, 'ymd' => $ymd, 'schedules' => $schedules]);
+        return view('user.diary', ['selectedDate' => $selectedDate, 'Ymd' => $Ymd, 'diary' => $diary]);
     }
     
     public function edit(Request $request)
     {
-        $selected_date = $request->selectedDate;
-        $diary_id = Day::where('date', $selected_date)->value('diary_id');
-        $diary = Diary::find($diary_id);
+        $selectedDate = $request->selectedDate;
+        $Ymd = date('Y年m月d日',strtotime($selectedDate));
         
-        $y = intval(substr($selected_date, 0, 4));
-        $m = intval(substr($selected_date, 4, 2));
-        $d = intval(substr($selected_date, 6, 2));
-        $ymd = "$y 年 $m 月 $d 日";
-        
-        return view('user.edit', ['selected_date' => $selected_date, 'diary' => $diary, 'ymd' => $ymd]);
+        $id = Day::where('day_date', $selectedDate)->value('diary_id');
+        $diary = Diary::find($id);
+
+        return view('user.edit', ['selectedDate' => $selectedDate,  'Ymd' => $Ymd, 'diary' => $diary]);
     }
     
     public function update(Request $request)
     {
-        $selected_date = $request->selected_date;
-        $diary_id = Day::where('date', $selected_date)->value('diary_id');
-        $diary = Diary::find($diary_id);
+        $this->validate($request, Diary::$rules);
         
-        if(empty($diary)) {
+        $selectedDate = $request->selectedDate;
+        $id = Day::where('day_date', $selectedDate)->value('diary_id');
+        $diary = Diary::find($id);
+        
+        if (empty($diary)){
             
-            $diary = new Diary();
-
-            if (isset($request->diary_text)) {
-                $diary->fill(['diary_text' => $request->diary_text]);
-            } else {
-                $diary->diary_text = null;
-            }
+            $diary = new Diary;
             
-            if(isset($request->image)) {
+            if ($request->file('image')) {
                 $path = $request->file('image')->store('public/image');
-                $diary->image_path = basename($path);
+                $diary->fill(['image_path' => basename($path)]);
             } else {
                 $diary->image_path = null;
             }
             
-            if ($diary->diary_text || $diary->image_path) {
-                $diary->save();
-                
-                $day = new Day;
-                $day->fill(['diary_id' => $diary->id]);
-                $day->fill(['date' => $request->selected_date]);
-                $day->save();
-            } else {
-                unset($diary);
-            }
+            $diary->fill(['diary_text' => $request->diary_text]);
+            $diary->save();
+            
+            $day = Day:: firstOrCreate(['day_date' => $selectedDate]);
+            $day->diary_id = $diary->id;
+            $day->save();
             
         } else {
-            
-            if (isset($request->diary_text)) {
-                $diary->fill(['diary_text' => $request->diary_text]);
-            } else {
-                $diary->diary_text = null;
-            }
             
             if ($request->image_remove == 'true') {
                 $diary->image_path = null;
             } elseif ($request->file('image')) {
                 $path = $request->file('image')->store('public/image');
-                $diary->image_path = basename($path);
+                $diary->fill(['image_path' => basename($path)]);
             }
             
-            if ($diary->diary_text || $diary->image_path) {
-                $diary->save();
-            } else {
-                unset($diary);
-            }
+            $diary->fill(['diary_text' => $request->diary_text]);
+            $diary->save();
+            
         }
         
         return redirect('user/home');
@@ -102,14 +78,6 @@ class DiaryController extends Controller
     
     public function diary_delete(Request $request)
     {
-        $selected_date = $request->selectedDate;
-        $diary_id = Day::where('date', $selected_date)->value('diary_id');
-        $diary = Diary::find($diary_id);
-        
-        if($diary) {
-            $diary->delete();
-        }
-
         return redirect('user/home');
     }
 }
