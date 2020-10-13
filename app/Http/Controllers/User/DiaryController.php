@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Day;
 use App\Diary;
 use App\Schedule;
@@ -16,10 +18,11 @@ class DiaryController extends Controller
         $selectedDate = $request->selectedDate;
         $Ymd = date('Y年m月d日',strtotime($selectedDate));
         
-        $id = Day::where('day_date', $selectedDate)->value('diary_id');
-        $diary = Diary::find($id);
+        $day = Day::where('day_date', $selectedDate)->first();
+        $diary = Diary::where('id', $day['diary_id'])->first();
+        $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
         
-        return view('user.diary', ['selectedDate' => $selectedDate, 'Ymd' => $Ymd, 'diary' => $diary]);
+        return view('user.diary', ['selectedDate' => $selectedDate, 'Ymd' => $Ymd, 'diary' => $diary, 'schedule' => $schedule]);
     }
     
     public function edit(Request $request)
@@ -27,8 +30,8 @@ class DiaryController extends Controller
         $selectedDate = $request->selectedDate;
         $Ymd = date('Y年m月d日',strtotime($selectedDate));
         
-        $id = Day::where('day_date', $selectedDate)->value('diary_id');
-        $diary = Diary::find($id);
+        $day = Day::where('day_date', $selectedDate)->first();
+        $diary = Diary::where('id', $day['diary_id'])->first();
 
         return view('user.edit', ['selectedDate' => $selectedDate,  'Ymd' => $Ymd, 'diary' => $diary]);
     }
@@ -38,8 +41,8 @@ class DiaryController extends Controller
         $this->validate($request, Diary::$rules);
         
         $selectedDate = $request->selectedDate;
-        $id = Day::where('day_date', $selectedDate)->value('diary_id');
-        $diary = Diary::find($id);
+        $day = Day::where('day_date', $selectedDate)->first();
+        $diary = Diary::where('id', $day['diary_id'])->first();
         
         if (empty($diary)){
             
@@ -62,8 +65,10 @@ class DiaryController extends Controller
         } else {
             
             if ($request->image_remove == 'true') {
+                Storage::disk('local')->delete('public/image/' . $diary->image_path);
                 $diary->image_path = null;
             } elseif ($request->file('image')) {
+                Storage::disk('local')->delete('public/image/' . $diary->image_path);
                 $path = $request->file('image')->store('public/image');
                 $diary->fill(['image_path' => basename($path)]);
             }

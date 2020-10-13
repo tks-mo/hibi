@@ -17,8 +17,8 @@ class ScheduleController extends Controller
         $selectedDate = $request->selectedDate;
         $Ymd = date('Y年m月d日',strtotime($selectedDate));
         
-        $id = Day::where('day_date', $selectedDate)->value('id');
-        $schedule = Schedule::where('day_id', $id)->orderBy('start_time', 'asc')->get();
+        $day = Day::where('day_date', $selectedDate)->first();
+        $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
         
         return view('user.create', ['selectedDate' => $selectedDate, 'Ymd' => $Ymd, 'schedule' => $schedule]);
     }

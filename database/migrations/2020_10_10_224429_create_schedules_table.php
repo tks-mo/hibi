@@ -17,7 +17,7 @@ class CreateSchedulesTable extends Migration
             $table->increments('id');
             $table->TIME('start_time');
             $table->TIME('end_time');
-            $table->string('schedule_text', 20);
+            $table->string('schedule_text', 30);
             $table->unsignedInteger('day_id');
             $table->foreign('day_id')->references('id')->on('days')->onDelete('cascade');
             $table->timestamps();
