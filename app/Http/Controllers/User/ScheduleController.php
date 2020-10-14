@@ -12,7 +12,7 @@ use App\Schedule;
 
 class ScheduleController extends Controller
 {
-    public function add(Request $request)
+    public function create(Request $request)
     {
         $selectedDate = $request->selectedDate;
         $Ymd = date('Y年m月d日',strtotime($selectedDate));
@@ -23,7 +23,7 @@ class ScheduleController extends Controller
         return view('user.create', ['selectedDate' => $selectedDate, 'Ymd' => $Ymd, 'schedule' => $schedule]);
     }
     
-    public function create(ScheduleRequest $request)
+    public function store(ScheduleRequest $request)
     {
         $selectedDate = $request->selectedDate;
         $day = Day::firstOrCreate(['day_date' => $selectedDate]);

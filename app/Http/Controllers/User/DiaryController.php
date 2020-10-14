@@ -18,6 +18,7 @@ class DiaryController extends Controller
         $selectedDate = $request->selectedDate;
         $Ymd = date('Y年m月d日',strtotime($selectedDate));
         
+        // 選択された日付と一致するデータを取得する
         $day = Day::where('day_date', $selectedDate)->first();
         $diary = Diary::where('id', $day['diary_id'])->first();
         $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
@@ -44,6 +45,7 @@ class DiaryController extends Controller
         $day = Day::where('day_date', $selectedDate)->first();
         $diary = Diary::where('id', $day['diary_id'])->first();
         
+        // 日記を新しく保存する場合
         if (empty($diary)){
             
             $diary = new Diary;
@@ -61,7 +63,8 @@ class DiaryController extends Controller
             $day = Day:: firstOrCreate(['day_date' => $selectedDate]);
             $day->diary_id = $diary->id;
             $day->save();
-            
+        
+        // 日記を変更し保存する場合
         } else {
             
             if ($request->image_remove == 'true') {

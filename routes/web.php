@@ -25,8 +25,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('edit', 'User\DiaryController@update');
     Route::get('diary_delete', 'User\DiaryController@diary_delete');
     // タイムスケジュール
-    Route::get('create', 'User\ScheduleController@add');
-    Route::post('create', 'User\ScheduleController@create');
+    Route::get('create', 'User\ScheduleController@create');
+    Route::post('create', 'User\ScheduleController@store');
     Route::get('schedule_delete', 'User\ScheduleController@schedule_delete');
 });
 

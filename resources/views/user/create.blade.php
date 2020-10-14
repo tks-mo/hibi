@@ -11,8 +11,8 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="card card-body bg-white border border-0">
-                <form action="{{ action('User\ScheduleController@create') }}" method="post" enctype="multipart/form-data">
+            <div class="card card-body border border-0">
+                <form action="{{ action('User\ScheduleController@store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <input type="hidden" name="selectedDate" value="{{ $selectedDate }}">

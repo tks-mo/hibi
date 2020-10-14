@@ -11,7 +11,7 @@
     
     <div class="row">
         <div class="col-md-10">
-            <div class ="card card-body bg-white border border-0">
+            <div class ="card card-body bg border border-0">
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
                         @if($diary['image_path']) <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid"> @endif

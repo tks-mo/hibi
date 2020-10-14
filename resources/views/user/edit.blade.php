@@ -11,7 +11,7 @@
     
     <div class="row">
         <div class="col-md-10">
-            <div class ="card card-body bg-white border border-0">
+            <div class ="card card-body bg border border-0">
                 <div class="text-danger">
                     @if(count($errors) > 0)
                         <ul>
