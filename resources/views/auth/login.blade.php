@@ -1,5 +1,7 @@
 @extends('layouts.user')
 
+@section('title', 'hibi - ログイン')
+
 @section('content')
 <div class="container h-100">
     <div class="row justify-content-center align-items-center h-100">

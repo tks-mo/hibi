@@ -1,11 +1,12 @@
 @extends('layouts.user')
 
-@section('content')
+@section('title', 'hibi - 日記とタイムスケジュール')
 
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{ $Ymd }}</h2>
+            <h2 class="text-info">{{ $ymd }}</h2>
         </div>
     </div>
     
@@ -14,13 +15,17 @@
             <div class ="card card-body bg border border-0">
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
-                        @if($diary['image_path']) <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid"> @endif
+                        @if($diary['image_path'])
+                            <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid">
+                        @endif
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
-                        @if($diary['diary_text']) {!! nl2br($diary->diary_text) !!} @endif
+                        @if($diary['diary_text'])
+                            {!! nl2br($diary->diary_text) !!}
+                        @endif
                     </div>
                 </div>
                 

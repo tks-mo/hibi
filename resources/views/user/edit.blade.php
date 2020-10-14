@@ -1,11 +1,12 @@
 @extends('layouts.user')
 
-@section('content')
+@section('title', 'hibi - 日記の作成編集')
 
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{ $Ymd }}</h2>
+            <h2 class="text-info">{{ $ymd }}</h2>
         </div>
     </div>
     
@@ -32,7 +33,9 @@
                     
                     <div class="form-group row">
                         <div class="col-md-8 mx-auto">
-                            @if($diary['image_path']) <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid"> @endif
+                            @if($diary['image_path'])
+                                <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid">
+                            @endif
                         </div>
                     </div>
                     
@@ -53,7 +56,7 @@
                     <div class="form-group row">
                         <div class="col-md-8 mx-auto">
                             <label for="diary_text"></label>
-                            <textarea class="form-control" name="diary_text" maxlength="255" rows="10">@if($diary['diary_text']) {{ $diary->diary_text }} @endif</textarea>
+                            <textarea class="form-control" name="diary_text" maxlength="255" rows="10">@if($diary['diary_text']){{ $diary->diary_text }}@endif</textarea>
                         </div>
                     </div>
                 </form>

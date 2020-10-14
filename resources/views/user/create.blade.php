@@ -1,11 +1,12 @@
 @extends('layouts.user')
 
-@section('content')
+@section('title', 'hibi - タイムスケジュールの作成')
 
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{ $Ymd }}</h2>
+            <h2 class="text-info">{{ $ymd }}</h2>
         </div>
     </div>
     

@@ -10,7 +10,7 @@ class Diary extends Model
     
     public function day()
     {
-      return $this->hasOne('App\Day');
+      return $this->belongsTo('App\Day');
     }
     
     public static $rules = array(

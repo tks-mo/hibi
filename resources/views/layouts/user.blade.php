@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>「hibi」</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ secure_asset('js/app.js') }}" defer></script>

@@ -15,6 +15,6 @@ class Day extends Model
     
     public function diary()
     {
-      return $this->belongsTo('App\Diary');
+      return $this->hasOne('App\Diary');
     }
 }

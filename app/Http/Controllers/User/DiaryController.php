@@ -16,25 +16,25 @@ class DiaryController extends Controller
     public function show(Request $request)
     {
         $selectedDate = $request->selectedDate;
-        $Ymd = date('Y年m月d日',strtotime($selectedDate));
+        $ymd = date('Y年m月d日',strtotime($selectedDate));
         
         // 選択された日付と一致するデータを取得する
         $day = Day::where('day_date', $selectedDate)->first();
-        $diary = Diary::where('id', $day['diary_id'])->first();
+        $diary = Diary::where('day_id', $day['id'])->first();
         $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
         
-        return view('user.diary', ['selectedDate' => $selectedDate, 'Ymd' => $Ymd, 'diary' => $diary, 'schedule' => $schedule]);
+        return view('user.diary', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary, 'schedule' => $schedule]);
     }
     
     public function edit(Request $request)
     {
         $selectedDate = $request->selectedDate;
-        $Ymd = date('Y年m月d日',strtotime($selectedDate));
+        $ymd = date('Y年m月d日',strtotime($selectedDate));
         
         $day = Day::where('day_date', $selectedDate)->first();
-        $diary = Diary::where('id', $day['diary_id'])->first();
+        $diary = Diary::where('day_id', $day['id'])->first();
 
-        return view('user.edit', ['selectedDate' => $selectedDate,  'Ymd' => $Ymd, 'diary' => $diary]);
+        return view('user.edit', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary]);
     }
     
     public function update(Request $request)
@@ -43,10 +43,12 @@ class DiaryController extends Controller
         
         $selectedDate = $request->selectedDate;
         $day = Day::where('day_date', $selectedDate)->first();
-        $diary = Diary::where('id', $day['diary_id'])->first();
+        $diary = Diary::where('day_id', $day['id'])->first();
         
         // 日記を新しく保存する場合
         if (empty($diary)){
+            
+            $day = Day::firstOrCreate(['day_date' => $selectedDate]);
             
             $diary = new Diary;
             
@@ -58,12 +60,9 @@ class DiaryController extends Controller
             }
             
             $diary->fill(['diary_text' => $request->diary_text]);
+            $diary->fill(['day_id' => $day->id]);
             $diary->save();
             
-            $day = Day:: firstOrCreate(['day_date' => $selectedDate]);
-            $day->diary_id = $diary->id;
-            $day->save();
-        
         // 日記を変更し保存する場合
         } else {
             
@@ -86,6 +85,15 @@ class DiaryController extends Controller
     
     public function diary_delete(Request $request)
     {
+        $selectedDate = $request->selectedDate;
+        $day = Day::where('day_date', $selectedDate)->first();
+        $diary = Diary::where('day_id', $day['id'])->first();
+        
+        if($diary) {
+            Storage::disk('local')->delete('public/image/' . $diary->image_path);
+            $diary->delete();
+        }
+        
         return redirect('user/home');
     }
 }

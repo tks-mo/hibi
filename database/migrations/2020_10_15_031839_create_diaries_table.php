@@ -17,6 +17,8 @@ class CreateDiariesTable extends Migration
             $table->increments('id');
             $table->string('image_path')->nullable();
             $table->string('diary_text', 255)->nullable();
+            $table->unsignedInteger('day_id');
+            $table->foreign('day_id')->references('id')->on('days')->onDelete('cascade');
             $table->timestamps();
         });
     }
