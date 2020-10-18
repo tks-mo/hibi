@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'hibi - 日記とタイムスケジュール')
+@section('title', 'hibi - 日記')
 
 @section('content')
 <div class="container">

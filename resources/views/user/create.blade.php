@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'hibi - タイムスケジュールの作成')
+@section('title', 'hibi - スケジュール作成')
 
 @section('content')
 <div class="container">
@@ -40,6 +40,10 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+                    @endif
+                    
+                    @if (session('registered'))
+                        <p>{{ session('registered') }}</p>
                     @endif
                 </div>
             </div>
