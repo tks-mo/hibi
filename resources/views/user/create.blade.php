@@ -5,14 +5,17 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <h2 class="text-info">{{ $ymd }}</h2>
+        <div class="col-md-12">
+            <h2 class="ymd-color">{{ $ymd }}</h2>
+            <div class="text-right mb-1">
+                <a href="{{ action('User\DiaryController@show', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">戻る</a>
+            </div>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-6">
-            <div class="card card-body border border-0">
+            <div class="card card-body border-0">
                 <form action="{{ action('User\ScheduleController@store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -25,11 +28,11 @@
                         <input type="time" name="end_time" value="{{ old('end_time') }}">
 
                         <label for="schedule_text"></label>
-                        <input type="text" class="form-control" name="schedule_text" value="{{ old('schedule_text') }}" maxlength="30">
+                        <input type="text" class="form-control" name="schedule_text" maxlength="30" value="{{ old('schedule_text') }}">
                     </div>
                     
                     <div class="text-right">
-                        <button type="submit" class="btn btn-outline-secondary">登録する</button>
+                        <button type="submit" class="btn btn-color">登録する</button>
                     </div>
                 </form>
                 
@@ -42,21 +45,19 @@
                         </ul>
                     @endif
                     
-                    @if (session('registered'))
-                        <p>{{ session('registered') }}</p>
-                    @endif
+                    <p>{{ session('registered') }}</p>
                 </div>
             </div>
         </div>
     
         <div class="col-md-6">
-            <h4 class="my-3">Time Schedule</h4>
+            <h4 class="mt-5">Time Schedule</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th width="120"></th>
                         <th></th>
-                        <th width="10%"></th>
+                        <th width="10"></th>
                     </tr>
                 </thead>
                 <tabody>

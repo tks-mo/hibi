@@ -12,43 +12,39 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #d3d6dd;
-                color: #fafcfe;
+                background-color: #ebecf0;
+                color: #dcdee3;
                 font-family: 'Roboto', sans-serif;
                 height: 100vh;
                 margin: 0;
             }
-
+            
             .full-height {
                 height: 100vh;
             }
-
+            
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
-
-            .position-ref {
-                position: relative;
-            }
-
+            
             .content {
                 text-align: center;
             }
-
+            
             .title {
-                font-size: 160px;
+                font-size: 140px;
             }
-
+            
             .links > a {
-                color: #fafcfe;
+                color: #a8adb3;
                 padding: 10px 10px;
-                margin: 16px;
+                margin: 10px;
                 font-size: 20px;
                 text-decoration: none;
             }
-
+            
             .links a:hover {
                 border: 1px solid;
             }
@@ -58,15 +54,16 @@
             }
             
             p {
-                color: #fafcfe;
+                margin-top: 0px;
+                color: #a8adb3;
             }
         </style>
     </head>
     
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="full-height flex-center">
             <div class="content">
-                <p>日常管理アプリ</p>
+                <p>日記アプリ</p>
                 <div class="title m-b-md">
                     hibi
                 </div>
@@ -77,7 +74,6 @@
                             <a href="{{ url('user/home') }}">Home</a>
                         @else
                             <a href="{{ route('login') }}">ログイン</a>
-    
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}">新規登録</a>
                             @endif

@@ -17,15 +17,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('home', 'User\CalendarController@index')->name('home');
-    
     Route::get('diary', 'User\DiaryController@show');
-    
     // 日記
-    Route::get('edit', 'User\DiaryController@edit');
+    Route::get('edit/{selectedDate?}', 'User\DiaryController@edit');
     Route::post('edit', 'User\DiaryController@update');
     Route::get('diary_delete', 'User\DiaryController@diary_delete');
-    // タイムスケジュール
-    Route::get('create', 'User\ScheduleController@create');
+    // スケジュール
+    Route::get('create/{selectedDate?}', 'User\ScheduleController@create');
     Route::post('create', 'User\ScheduleController@store');
     Route::get('schedule_delete', 'User\ScheduleController@schedule_delete');
 });

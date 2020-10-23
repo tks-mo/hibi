@@ -14,7 +14,7 @@ class Diary extends Model
     }
     
     public static $rules = array(
-      'image_path' => 'required_without:diary_text|file|image',
-      'diary_text' => 'required_without:image_path|max:255',
+      'image_path' => 'file|image',
+      'diary_text' => 'required|max:255',
       );
 }

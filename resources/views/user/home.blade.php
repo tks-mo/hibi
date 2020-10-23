@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'hibi - カレンダー')
+@section('title', 'hibi - home')
 
 @push('css')
 <link href="{{ secure_asset('css/calendar.css') }}" rel="stylesheet">

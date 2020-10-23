@@ -85,14 +85,12 @@ class DiaryController extends Controller
     
     public function diary_delete(Request $request)
     {
-        $selectedDate = $request->selectedDate;
-        $day = Day::where('day_date', $selectedDate)->first();
-        $diary = Diary::where('day_id', $day['id'])->first();
+        $diary = Diary::find($request->id);
         
-        if($diary) {
-            Storage::disk('local')->delete('public/image/' . $diary->image_path);
-            $diary->delete();
+        if($diary->image_path) {
+             Storage::disk('local')->delete('public/image/' . $diary->image_path);
         }
+        $diary->delete();
         
         return redirect('user/home');
     }

@@ -5,14 +5,17 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <h2 class="text-info">{{ $ymd }}</h2>
+        <div class="col-md-12">
+            <h2 class="ymd-color">{{ $ymd }}</h2>
+            <div class="text-right mb-1">
+                <a href="home" class="btn btn-color" role="button">戻る</a>
+            </div>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-10">
-            <div class ="card card-body bg border border-0">
+            <div class="card card-body border-0">
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
                         @if($diary['image_path'])
@@ -30,7 +33,7 @@
                 </div>
                 
                 <div class="text-right">
-                    <a href="edit?selectedDate={{ $selectedDate }}" class="btn btn-outline-secondary" role="button">編集する</a>
+                    <a href="{{ action('User\DiaryController@edit', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">編集する</a>
                 </div>
             </div>
         </div>
@@ -38,7 +41,7 @@
     
     <div class="row">
         <div class="col-md-8">
-            <h4 class="my-3">Time Schedule</h4>
+            <h4 class="mt-5">Time Schedule</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -56,7 +59,7 @@
                 </tbody>
             </table>
             <div class="col-md-12 text-right">
-                <a href="create?selectedDate={{ $selectedDate }}" class="btn btn-outline-secondary" role="button">作成する</a>
+                <a href="{{ action('User\ScheduleController@create', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">作成する</a>
             </div>
         </div>
     </div>

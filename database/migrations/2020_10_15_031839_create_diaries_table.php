@@ -16,7 +16,7 @@ class CreateDiariesTable extends Migration
         Schema::create('diaries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_path')->nullable();
-            $table->string('diary_text', 255)->nullable();
+            $table->string('diary_text', 255);
             $table->unsignedInteger('day_id');
             $table->foreign('day_id')->references('id')->on('days')->onDelete('cascade');
             $table->timestamps();

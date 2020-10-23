@@ -5,14 +5,17 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <h2 class="text-info">{{ $ymd }}</h2>
+        <div class="col-md-12">
+            <h2 class="ymd-color">{{ $ymd }}</h2>
+            <div class="text-right mb-1">
+                <a href="{{ action('User\DiaryController@show', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">戻る</a>
+            </div>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-10">
-            <div class ="card card-body bg border border-0">
+            <div class="card card-body border-0">
                 <div class="text-danger">
                     @if(count($errors) > 0)
                         <ul>
@@ -22,34 +25,34 @@
                         </ul>
                     @endif
                 </div>
-        
+                
                 <form action="{{ action('User\DiaryController@update') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="text-right">
-                        <button type="submit" class="btn btn-outline-secondary">記録する</button>
+                        <button type="submit" class="btn btn-color">記録する</button>
                     </div>
                     
                     <input type="hidden" name="selectedDate" value="{{ $selectedDate }}">
                     
-                    <div class="form-group row">
-                        <div class="col-md-8 mx-auto">
-                            @if($diary['image_path'])
+                    @if($diary['image_path'])
+                        <div class="form-group row">
+                            <div class="col-md-8 mx-auto">
                                 <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid">
-                            @endif
+                            </div>
                         </div>
-                    </div>
+                        
+                        <div class="form-check row">
+                            <div class="col-md-8 mx-auto">
+                                <label class="form-check-label" for="image_remove"></label>
+                                <input type="checkbox" class="form-check-input" name="image_remove" value="true">画像を削除する</input>
+                            </div>
+                        </div>
+                    @endif
                     
                     <div class="form-group row">
                         <div class="col-md-8 mx-auto">
                             <label for="image"></label>
                             <input type="file" class="form-control-file" name="image">
-                        </div>
-                    </div>
-                    
-                    <div class="form-check row">
-                        <div class="col-md-8 mx-auto">
-                            <label class="form-check-label" for="image_remove"></label>
-                            <input type="checkbox" class="form-check-input" name="image_remove" value="true">画像を削除する</input>
                         </div>
                     </div>
                     
@@ -61,9 +64,13 @@
                     </div>
                 </form>
                 
-                <div class="text-right">
-                    <a href="diary_delete?selectedDate={{ $selectedDate }}" class="btn btn-outline-danger" role="button">削除する</a>
-                </div>
+                @if($diary)
+                    <div class="text-right">
+                        <a href="{{ action('User\DiaryController@diary_delete', ['id' => $diary->id]) }}">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">削除する</button>
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

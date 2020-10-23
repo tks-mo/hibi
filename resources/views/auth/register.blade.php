@@ -7,13 +7,16 @@
     <div class="row justify-content-center align-items-center h-100">
         
         <div class="col-md-2 mx-0">
-            <h1 class="text-center">hibi</h1>
+            <h1 class="text-center hibi-color">hibi</h1>
         </div>
         
         <div class="col-md-6 mx-0">
             <div class="card bg-transparent">
                 <div class="card-body">
-                    <div class="card-title text-center"><h2>新規登録</h2></div>
+                    <div class="card-title text-center">
+                        <h2>新規登録</h2>
+                    </div>
+                    
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -63,9 +66,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mt-5 mb-0">
                             <div class="col-md-10 text-right">
-                                <button type="submit" class="btn btn-outline-secondary">
+                                <button type="submit" class="btn btn-color">
                                     {{ __('messages.Register') }}
                                 </button>
                             </div>

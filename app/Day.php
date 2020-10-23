@@ -17,4 +17,5 @@ class Day extends Model
     {
       return $this->hasOne('App\Diary');
     }
+    
 }
