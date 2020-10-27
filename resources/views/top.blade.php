@@ -12,8 +12,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #ebecf0;
-                color: #dcdee3;
+                background-color: #d3d6dd;
+                color: #84a2d4;
                 font-family: 'Roboto', sans-serif;
                 height: 100vh;
                 margin: 0;
@@ -31,14 +31,18 @@
             
             .content {
                 text-align: center;
+                background-color: #fefefe;
+                opacity: 0.4;
+                padding: 100px 40px;
             }
             
             .title {
+                margin-bottom: 40px;
                 font-size: 140px;
             }
             
             .links > a {
-                color: #a8adb3;
+                color: #84a2d4;
                 padding: 10px 10px;
                 margin: 10px;
                 font-size: 20px;
@@ -49,13 +53,8 @@
                 border: 1px solid;
             }
             
-            .m-b-md {
-                margin-bottom: 40px;
-            }
-            
             p {
                 margin-top: 0px;
-                color: #a8adb3;
             }
         </style>
     </head>
@@ -63,8 +62,8 @@
     <body>
         <div class="full-height flex-center">
             <div class="content">
-                <p>日記アプリ</p>
-                <div class="title m-b-md">
+                <p>日常管理アプリ</p>
+                <div class="title">
                     hibi
                 </div>
 
