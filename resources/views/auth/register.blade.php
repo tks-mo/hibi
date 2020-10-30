@@ -14,7 +14,7 @@
             <div class="card bg-transparent">
                 <div class="card-body">
                     <div class="card-title text-center">
-                        <h2>新規登録</h2>
+                        <h1>新規登録</h1>
                     </div>
                     
                     <form method="POST" action="{{ route('register') }}">

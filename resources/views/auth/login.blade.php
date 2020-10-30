@@ -14,7 +14,7 @@
             <div class="card bg-transparent">
                 <div class="card-body">
                     <div class="card-title text-center">
-                        <h2>ログイン</h2>
+                        <h1>ログイン</h1>
                     </div>
                     
                     <form method="POST" action="{{ route('login') }}">

@@ -12,9 +12,9 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #d3d6dd;
-                color: #84a2d4;
                 font-family: 'Roboto', sans-serif;
+                background-color: #d3d6dd;
+                color: #8da0b6;
                 height: 100vh;
                 margin: 0;
             }
@@ -31,21 +31,21 @@
             
             .content {
                 text-align: center;
-                background-color: #fefefe;
+                background-color: #fafafa;
                 opacity: 0.4;
                 padding: 100px 40px;
             }
             
             .title {
-                margin-bottom: 40px;
                 font-size: 140px;
+                margin-bottom: 40px;
             }
             
             .links > a {
-                color: #84a2d4;
+                color: #8da0b6;
+                font-size: 20px;
                 padding: 10px 10px;
                 margin: 10px;
-                font-size: 20px;
                 text-decoration: none;
             }
             

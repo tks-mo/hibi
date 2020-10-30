@@ -1,43 +1,46 @@
 body {
+  font-family: 'Roboto', sans-serif;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #fcfcfc;
-  color: #3c3c3c;
+  background-color: #fafafa;
+  color: #708090;
 }
 
 .form-control:focus {
-  border-color: #b4c8dc;
-  box-shadow: 0 0 0 0.2rem rgba(160, 180, 220, 0.2);
+  border-color: #84a2d4;
+  box-shadow: 0 0 0 0.2rem rgba(132, 162, 212, 0.2);
 }
 
 .hibi-color {
-  color: #8da0b6;
   font-size: 60px;
+  font-weight: bold;
+  color: #d3d6dd;
 }
 
 .ymd-color {
+  font-weight: bold;
   color: #8da0b6;
 }
 
 .btn-color {
-  color: #8ca0b4;
-  border-color: #8ca0b4;
+  color: #a5b3cc;
+  border-color: #a5b3cc;
 }
 
 .btn-color:hover {
   color: #fff;
-  background-color: #8ca0b4;
-  border-color: #8ca0b4;
+  background-color: #a5b3cc;
+  border-color: #a5b3cc;
 }
 
 .btn-color:focus,
 .btn-color.focus {
-  box-shadow: 0 0 0 0.2rem rgba(120, 140, 180, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(166, 177, 188, 0.5);
 }
 
 .btn-color.disabled,
 .btn-color:disabled {
-  color: #8ca0b4;
+  color: #a5b3cc;
   background-color: transparent;
 }
 
@@ -45,12 +48,48 @@ body {
 .btn-color:not(:disabled):not(.disabled).active,
 .show > .btn-color.dropdown-toggle {
   color: #fff;
-  background-color: #8ca0b4;
-  border-color: #8ca0b4;
+  background-color: #a5b3cc;
+  border-color: #a5b3cc;
 }
 
 .btn-color:not(:disabled):not(.disabled):active:focus,
 .btn-color:not(:disabled):not(.disabled).active:focus,
 .show > .btn-color.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(120, 140, 180, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(166, 177, 188, 0.5);
+}
+
+.delete-btn-color {
+  color: #ec6d71;
+  border-color: #ec6d71;
+}
+
+.delete-btn-color:hover {
+  color: #fff;
+  background-color: #ec6d71;
+  border-color: #ec6d71;
+}
+
+.delete-btn-color:focus,
+.delete-btn-color.focus {
+  box-shadow: 0 0 0 0.2rem rgba(236, 109, 113, 0.5);
+}
+
+.delete-btn-color.disabled,
+.delete-btn-color:disabled {
+  color: #ec6d71;
+  background-color: transparent;
+}
+
+.delete-btn-color:not(:disabled):not(.disabled):active,
+.delete-btn-color:not(:disabled):not(.disabled).active,
+.show > .delete-btn-color.dropdown-toggle {
+  color: #fff;
+  background-color: #ec6d71;
+  border-color: #ec6d71;
+}
+
+.delete-btn-color:not(:disabled):not(.disabled):active:focus,
+.delete-btn-color:not(:disabled):not(.disabled).active:focus,
+.show > .delete-btn-color.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(236, 109, 113, 0.5);
 }

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="ymd-color">{{ $ymd }}</h2>
-            <div class="text-right mb-1">
+            <div class="text-right mb-2">
                 <a href="{{ action('User\DiaryController@show', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">戻る</a>
             </div>
         </div>
@@ -67,7 +67,7 @@
                 @if($diary)
                     <div class="text-right">
                         <a href="{{ action('User\DiaryController@diary_delete', ['id' => $diary->id]) }}">
-                            <button type="submit" class="btn btn-outline-danger btn-sm">削除する</button>
+                            <button type="submit" class="btn delete-btn-color btn-sm">削除する</button>
                         </a>
                     </div>
                 @endif

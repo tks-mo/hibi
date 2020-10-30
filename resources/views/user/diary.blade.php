@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="ymd-color">{{ $ymd }}</h2>
-            <div class="text-right mb-1">
+            <div class="text-right mb-2">
                 <a href="home" class="btn btn-color" role="button">戻る</a>
             </div>
         </div>
@@ -41,8 +41,8 @@
     
     <div class="row">
         <div class="col-md-8">
-            <h4 class="mt-5">Time Schedule</h4>
-            <table class="table table-hover">
+            <h3 class="mt-5">Time Schedule</h3>
+            <table class="table">
                 <thead>
                     <tr>
                         <th width="120"></th>
@@ -58,6 +58,7 @@
                     @endforeach
                 </tbody>
             </table>
+            
             <div class="col-md-12 text-right">
                 <a href="{{ action('User\ScheduleController@create', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">作成する</a>
             </div>

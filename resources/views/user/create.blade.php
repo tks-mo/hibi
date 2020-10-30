@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="ymd-color">{{ $ymd }}</h2>
-            <div class="text-right mb-1">
+            <div class="text-right mb-2">
                 <a href="{{ action('User\DiaryController@show', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">戻る</a>
             </div>
         </div>
@@ -51,7 +51,7 @@
         </div>
     
         <div class="col-md-6">
-            <h4 class="mt-5">Time Schedule</h4>
+            <h3 class="mt-5">Time Schedule</h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -67,7 +67,7 @@
                             <td>{{ $s->schedule_text }}</td>
                             <td>
                                 <a href="{{ action('User\ScheduleController@schedule_delete', ['id' => $s->id]) }}">
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">削除</button>
+                                    <button type="submit" class="btn delete-btn-color btn-sm">削除</button>
                                 </a>
                             </td>
                         </tr>
