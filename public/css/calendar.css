@@ -1,30 +1,54 @@
-.y,
 .month {
-  font-size: 20px;
-  color: #B0C4DE;
+  font-size: 32px;
+  font-weight: bold;
+  color: #8da3cc;
 }
 
-th {
-  height: 40px;
-  text-align: center;
+.y {
+  font-size: 30px;
+  color: #8da0b6;
 }
 
-td {
-  height: 80px;
+.y:hover {
+  color: #bbc8e6;
+  text-decoration: none;
+}
+
+table {
   text-align: center;
+  height: 640px;
+}
+
+thead {
+  height: 10%;
+  color: #a3b3cf;
+}
+
+tbody {
+  height: 90%;
 }
 
 th:nth-of-type(1),
 td:nth-of-type(1) {
-  color: #B0C4DE;
+  color: #a3b3cf;
 }
 
 th:nth-of-type(7),
 td:nth-of-type(7) {
-  color: #B0C4DE;
+  color: #a3b3cf;
 }
 
 .today {
-  background: #F0F8FF;
+  background: #f7f8fa;
+}
+
+td > a {
+  font-size: 20px;
+  color: #8da0b6;
+}
+
+td a:hover {
+  color: #bbc8e6;
+  text-decoration: none;
 }
 

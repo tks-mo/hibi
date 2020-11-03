@@ -62,7 +62,7 @@
     <body>
         <div class="full-height flex-center">
             <div class="content">
-                <p>日常管理アプリ</p>
+                <p>日記アプリ</p>
                 <div class="title">
                     hibi
                 </div>

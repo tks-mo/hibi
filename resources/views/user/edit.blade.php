@@ -28,7 +28,7 @@
                 
                 <form action="{{ action('User\DiaryController@update') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="text-right">
+                    <div class="text-right mb-2">
                         <button type="submit" class="btn btn-color">記録する</button>
                     </div>
                     
