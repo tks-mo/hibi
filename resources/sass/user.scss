@@ -27,39 +27,39 @@ body {
 }
 
 .btn-color {
-  color: #a5b3cc;
-  border-color: #a5b3cc;
+  color: #8da0b6;
+  border-color: #8da0b6;
 }
 
 .btn-color:hover {
-  color: #fff;
-  background-color: #a5b3cc;
-  border-color: #a5b3cc;
+  color: #fafafa;
+  background-color: #8da0b6;
+  border-color: #8da0b6;
 }
 
 .btn-color:focus,
 .btn-color.focus {
-  box-shadow: 0 0 0 0.2rem rgba(166, 177, 188, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(141, 160, 182, 0.5);
 }
 
 .btn-color.disabled,
 .btn-color:disabled {
-  color: #a5b3cc;
+  color: #8da0b6;
   background-color: transparent;
 }
 
 .btn-color:not(:disabled):not(.disabled):active,
 .btn-color:not(:disabled):not(.disabled).active,
 .show > .btn-color.dropdown-toggle {
-  color: #fff;
-  background-color: #a5b3cc;
-  border-color: #a5b3cc;
+  color: #fafafa;
+  background-color: #8da0b6;
+  border-color: #8da0b6;
 }
 
 .btn-color:not(:disabled):not(.disabled):active:focus,
 .btn-color:not(:disabled):not(.disabled).active:focus,
 .show > .btn-color.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(166, 177, 188, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(141, 160, 182, 0.5);
 }
 
 .delete-btn-color {
@@ -68,7 +68,7 @@ body {
 }
 
 .delete-btn-color:hover {
-  color: #fff;
+  color: #fafafa;
   background-color: #ec6d71;
   border-color: #ec6d71;
 }
@@ -87,7 +87,7 @@ body {
 .delete-btn-color:not(:disabled):not(.disabled):active,
 .delete-btn-color:not(:disabled):not(.disabled).active,
 .show > .delete-btn-color.dropdown-toggle {
-  color: #fff;
+  color: #fafafa;
   background-color: #ec6d71;
   border-color: #ec6d71;
 }

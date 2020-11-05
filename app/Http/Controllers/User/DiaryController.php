@@ -7,50 +7,63 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Storage;
 
+use Auth;
 use App\Day;
 use App\Diary;
 use App\Schedule;
 
 class DiaryController extends Controller
 {
+    // 日記画面
     public function show(Request $request)
     {
         $selectedDate = $request->selectedDate;
         $ymd = date('Y年m月d日',strtotime($selectedDate));
+        $user_id = Auth::id();
         
         // 選択された日付と一致するデータを取得する
-        $day = Day::where('day_date', $selectedDate)->first();
+        $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
         $diary = Diary::where('day_id', $day['id'])->first();
         $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
         
         return view('user.diary', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary, 'schedule' => $schedule]);
     }
     
+    // 日記編集画面
     public function edit(Request $request)
     {
         $selectedDate = $request->selectedDate;
         $ymd = date('Y年m月d日',strtotime($selectedDate));
+        $user_id = Auth::id();
         
-        $day = Day::where('day_date', $selectedDate)->first();
+        $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
         $diary = Diary::where('day_id', $day['id'])->first();
 
         return view('user.edit', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary]);
     }
     
+    // 日記の登録と更新
     public function update(Request $request)
     {
         $this->validate($request, Diary::$rules);
         
+        $user_id = Auth::id();
         $selectedDate = $request->selectedDate;
-        $day = Day::where('day_date', $selectedDate)->first();
+        $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
         $diary = Diary::where('day_id', $day['id'])->first();
         
-        // 日記を新しく保存する場合
-        if (empty($diary)){
+        if(empty($diary)) {
             
-            $day = Day::firstOrCreate(['day_date' => $selectedDate]);
+            // dayテーブルにデータがない場合は登録する
+            if (empty($day)) {
+                $day = new Day();
+                $day->day_date = $selectedDate;
+                $day->user_id = $user_id;
+                $day->save();
+            }
             
-            $diary = new Diary;
+            // 日記を新しく登録する
+            $diary = new Diary();
             
             if ($request->file('image')) {
                 $path = $request->file('image')->store('public/image');
@@ -63,9 +76,9 @@ class DiaryController extends Controller
             $diary->fill(['day_id' => $day->id]);
             $diary->save();
             
-        // 日記を変更し保存する場合
         } else {
             
+            //日記を編集し更新する
             if ($request->image_remove == 'true') {
                 Storage::disk('local')->delete('public/image/' . $diary->image_path);
                 $diary->image_path = null;
@@ -83,6 +96,7 @@ class DiaryController extends Controller
         return redirect('user/home');
     }
     
+    //日記の削除
     public function diary_delete(Request $request)
     {
         $diary = Diary::find($request->id);

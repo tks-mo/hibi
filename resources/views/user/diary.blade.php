@@ -42,6 +42,10 @@
     <div class="row">
         <div class="col-md-8">
             <h3 class="mt-5">Time Schedule</h3>
+            <div class="text-reft mb-2 p-0">
+                <a href="{{ action('User\ScheduleController@create', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">作成する</a>
+            </div>
+            
             <table class="table">
                 <thead>
                     <tr>
@@ -58,10 +62,6 @@
                     @endforeach
                 </tbody>
             </table>
-            
-            <div class="col-md-12 text-right">
-                <a href="{{ action('User\ScheduleController@create', ['selectedDate' => $selectedDate]) }}" class="btn btn-color" role="button">作成する</a>
-            </div>
         </div>
     </div>
 </div>

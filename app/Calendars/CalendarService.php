@@ -4,8 +4,6 @@ namespace App\Calendars;
 
 use Carbon\Carbon;
 
-// date_default_timezone_set('Asia/Tokyo');
-
 class CalendarService
 {
     /**
@@ -90,7 +88,7 @@ class CalendarService
     }
 
     /**
-     * 2019-09-01 のような月初めの文字列を返却する
+     * 2020-09-01 のような月初めの文字列を返却する
      *
      * @return string
      */

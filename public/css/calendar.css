@@ -21,7 +21,7 @@ table {
 
 thead {
   height: 10%;
-  color: #a3b3cf;
+  color: #8d93c8;
 }
 
 tbody {
@@ -30,12 +30,12 @@ tbody {
 
 th:nth-of-type(1),
 td:nth-of-type(1) {
-  color: #a3b3cf;
+  color: #8d93c8;
 }
 
 th:nth-of-type(7),
 td:nth-of-type(7) {
-  color: #a3b3cf;
+  color: #8d93c8;
 }
 
 .today {

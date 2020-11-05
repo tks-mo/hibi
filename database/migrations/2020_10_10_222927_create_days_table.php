@@ -16,6 +16,8 @@ class CreateDaysTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
             $table->date('day_date');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
