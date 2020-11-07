@@ -17,6 +17,10 @@ class DiaryController extends Controller
     // 日記画面
     public function show(Request $request)
     {
+        //日記とスケジュールの初期化処理
+        $diary = null;
+        $schedule = null;
+        
         $selectedDate = $request->selectedDate;
         $ymd = date('Y年m月d日',strtotime($selectedDate));
         $user_id = Auth::id();
@@ -26,10 +30,6 @@ class DiaryController extends Controller
         if ($day != null) {
             $diary = Diary::where('day_id', $day['id'])->first();
             $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
-        } else {
-            $NULL_KEY = 99999;
-            $diary = Diary::where('day_id', $NULL_KEY)->first();
-            $schedule = Schedule::where('day_id', $NULL_KEY)->get();
         }
         
         return view('user.diary', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary, 'schedule' => $schedule]);
