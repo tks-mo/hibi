@@ -23,8 +23,10 @@ class DiaryController extends Controller
         
         // 選択された日付と一致するデータを取得する
         $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
-        $diary = Diary::where('day_id', $day['id'])->first();
-        $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
+        if ($day != null) {
+            $diary = Diary::where('day_id', $day['id'])->first();
+            $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
+        }
         
         return view('user.diary', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary, 'schedule' => $schedule]);
     }
