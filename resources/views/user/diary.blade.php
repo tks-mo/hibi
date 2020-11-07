@@ -18,7 +18,7 @@
             <div class="card card-body border-0">
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
-                        @if($diary['image_path'])
+                        @if($diary != null)
                             <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid" width="100%">
                         @endif
                     </div>
@@ -26,7 +26,7 @@
                 
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
-                        @if($diary['diary_text'])
+                        @if($diary != null)
                             {!! nl2br($diary->diary_text) !!}
                         @endif
                     </div>
@@ -54,12 +54,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($schedule as $s)
-                        <tr>
-                            <td>{{ substr($s->start_time, 0, 5) }} - {{ substr($s->end_time, 0, 5) }}</td>
-                            <td>{{ $s->schedule_text }}</td>
-                        </tr>
-                    @endforeach
+                    @if($schedule != null)
+                        @foreach($schedule as $s)
+                            <tr>
+                                <td>{{ substr($s->start_time, 0, 5) }} - {{ substr($s->end_time, 0, 5) }}</td>
+                                <td>{{ $s->schedule_text }}</td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
