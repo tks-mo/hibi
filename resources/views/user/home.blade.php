@@ -34,8 +34,6 @@
                     @endforeach
                 </tbody>
             </table>
-            
-            <p>テスト</p>
         </div>
     </div>
 </div>
