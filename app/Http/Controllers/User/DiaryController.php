@@ -27,7 +27,7 @@ class DiaryController extends Controller
             $diary = Diary::where('day_id', $day['id'])->first();
             $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
         } else {
-            $NULL_KEY = "nullword";
+            $NULL_KEY = 99999;
             $diary = Diary::where('day_id', $NULL_KEY)->first();
             $schedule = Schedule::where('day_id', $NULL_KEY)->get();
         }
