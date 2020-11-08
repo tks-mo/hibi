@@ -38,13 +38,20 @@ class DiaryController extends Controller
     // 日記編集画面
     public function edit(Request $request)
     {
+        //日記とスケジュールの初期化処理
+        $diary = null;
+        $schedule = null;
+        
         $selectedDate = $request->selectedDate;
         $ymd = date('Y年m月d日',strtotime($selectedDate));
         $user_id = Auth::id();
         
+        // 選択された日付と一致するデータを取得する
         $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
-        $diary = Diary::where('day_id', $day['id'])->first();
-
+        if ($day != null) {
+            $diary = Diary::where('day_id', $day['id'])->first();
+        }
+        
         return view('user.edit', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'diary' => $diary]);
     }
     

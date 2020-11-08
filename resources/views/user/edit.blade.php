@@ -34,7 +34,7 @@
                     
                     <input type="hidden" name="selectedDate" value="{{ $selectedDate }}">
                     
-                    @if($diary['image_path'])
+                    @if($diary != null)
                         <div class="form-group row">
                             <div class="col-md-8 mx-auto">
                                 <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid">
@@ -59,12 +59,12 @@
                     <div class="form-group row">
                         <div class="col-md-8 mx-auto">
                             <label for="diary_text"></label>
-                            <textarea class="form-control" name="diary_text" maxlength="255" rows="10">@if($diary['diary_text']){{ $diary->diary_text }}@endif</textarea>
+                            <textarea class="form-control" name="diary_text" maxlength="255" rows="10">@if($diary != null){{ $diary->diary_text }}@endif</textarea>
                         </div>
                     </div>
                 </form>
                 
-                @if($diary)
+                @if($diary != null)
                     <div class="text-right">
                         <a href="{{ action('User\DiaryController@diary_delete', ['id' => $diary->id]) }}">
                             <button type="submit" class="btn delete-btn-color btn-sm">削除する</button>
