@@ -61,17 +61,19 @@
                     </tr>
                 </thead>
                 <tabody>
-                    @foreach($schedule as $s)
-                        <tr>
-                            <td>{{ substr($s->start_time, 0, 5) }} - {{ substr($s->end_time, 0, 5) }}</td>
-                            <td>{{ $s->schedule_text }}</td>
-                            <td>
-                                <a href="{{ action('User\ScheduleController@schedule_delete', ['id' => $s->id]) }}">
-                                    <button type="submit" class="btn delete-btn-color btn-sm">削除</button>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if($schedule != null)
+                        @foreach($schedule as $s)
+                            <tr>
+                                <td>{{ substr($s->start_time, 0, 5) }} - {{ substr($s->end_time, 0, 5) }}</td>
+                                <td>{{ $s->schedule_text }}</td>
+                                <td>
+                                    <a href="{{ action('User\ScheduleController@schedule_delete', ['id' => $s->id]) }}">
+                                        <button type="submit" class="btn delete-btn-color btn-sm">削除</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tabody>
             </table>
         </div>

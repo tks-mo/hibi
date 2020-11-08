@@ -14,13 +14,18 @@ class ScheduleController extends Controller
     //スケジュール作成画面
     public function create(Request $request)
     {
+        //スケジュールの初期化処理
+        $schedule = null;
+        
         $selectedDate = $request->selectedDate;
         $ymd = date('Y年m月d日',strtotime($selectedDate));
         $user_id = Auth::id();
         
         // 選択された日付と一致するデータを取得する
         $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
-        $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
+        if ($day != null) {
+            $schedule = Schedule::where('day_id', $day['id'])->orderBy('start_time', 'asc')->get();
+        }
         
         return view('user.create', ['selectedDate' => $selectedDate, 'ymd' => $ymd, 'schedule' => $schedule]);
     }

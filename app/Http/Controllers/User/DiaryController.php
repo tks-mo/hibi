@@ -38,9 +38,8 @@ class DiaryController extends Controller
     // 日記編集画面
     public function edit(Request $request)
     {
-        //日記とスケジュールの初期化処理
+        //日記の初期化処理
         $diary = null;
-        $schedule = null;
         
         $selectedDate = $request->selectedDate;
         $ymd = date('Y年m月d日',strtotime($selectedDate));
