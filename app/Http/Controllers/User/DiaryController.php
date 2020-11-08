@@ -59,10 +59,16 @@ class DiaryController extends Controller
     {
         $this->validate($request, Diary::$rules);
         
-        $user_id = Auth::id();
+        //日記の初期化処理
+        $diary = null;
+        
         $selectedDate = $request->selectedDate;
+        $user_id = Auth::id();
+        
         $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
-        $diary = Diary::where('day_id', $day['id'])->first();
+        if ($day != null) {
+            $diary = Diary::where('day_id', $day['id'])->first();
+        }
         
         if(empty($diary)) {
             
