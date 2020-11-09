@@ -42,14 +42,20 @@ class ScheduleController extends Controller
         
         $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
         
-        //パターン1:登録したい時間帯の中から開始するスケジュールが既にある
-        $registered1 = Schedule::where('day_id', $day['id'])->where('start_time', '>=', $start_time)->where('start_time', '<', $end_time)->exists();
-        //パターン2:登録したい時間帯の中で終了するスケジュールが既にある
-        $registered2 = Schedule::where('day_id', $day['id'])->where('end_time', '>', $start_time)->where('end_time', '<=', $end_time)->exists();
-        //パターン3:登録したい時間帯の中に開始と終了が入るスケジュールが既にある
-        $registered3 = Schedule::where('day_id', $day['id'])->where('start_time', '<', $start_time)->where('end_time', '>', $end_time)->exists();
+        if ($day != null) {
+            //パターン1:登録したい時間帯の中から開始するスケジュールが既にある
+            $registered1 = Schedule::where('day_id', $day['id'])->where('start_time', '>=', $start_time)->where('start_time', '<', $end_time)->exists();
+            //パターン2:登録したい時間帯の中で終了するスケジュールが既にある
+            $registered2 = Schedule::where('day_id', $day['id'])->where('end_time', '>', $start_time)->where('end_time', '<=', $end_time)->exists();
+            //パターン3:登録したい時間帯の中に開始と終了が入るスケジュールが既にある
+            $registered3 = Schedule::where('day_id', $day['id'])->where('start_time', '<', $start_time)->where('end_time', '>', $end_time)->exists();
+        } else {
+            $registered1 = null;
+            $registered2 = null;
+            $registered3 = null;
+        }
         
-        if ($registered1 || $registered2 || $registered3) {
+        if ($registered1 || $registered2 || $registered3 != null) {
             //パターン1,2,3のどれかにあてはまる場合は登録しない
             return back()->withInput()->with('registered', '・指定された時間帯は既に登録済みです。');
         } else {
