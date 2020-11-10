@@ -9,7 +9,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="text-center">
                 <a class="y" href="?ym={{ $prev }}">&lt;</a>
                     <span class="month">{{ $month }}</span>

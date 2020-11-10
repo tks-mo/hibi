@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 use Auth;
 use App\Day;
@@ -84,8 +84,8 @@ class DiaryController extends Controller
             $diary = new Diary();
             
             if ($request->file('image')) {
-                $path = $request->file('image')->store('public/image');
-                $diary->fill(['image_path' => basename($path)]);
+                $path = Storage::disk('s3')->putFile('/',$request->file('image'),'public');
+                $diary->image_path = Storage::disk('s3')->url($path);
             } else {
                 $diary->image_path = null;
             }
@@ -98,12 +98,10 @@ class DiaryController extends Controller
             
             //日記を編集し更新する
             if ($request->image_remove == 'true') {
-                Storage::disk('local')->delete('public/image/' . $diary->image_path);
                 $diary->image_path = null;
             } elseif ($request->file('image')) {
-                Storage::disk('local')->delete('public/image/' . $diary->image_path);
-                $path = $request->file('image')->store('public/image');
-                $diary->fill(['image_path' => basename($path)]);
+                $path = Storage::disk('s3')->putFile('/',$request->file('image'),'public');
+                $diary->image_path = Storage::disk('s3')->url($path);
             }
             
             $diary->fill(['diary_text' => $request->diary_text]);
@@ -118,10 +116,6 @@ class DiaryController extends Controller
     public function diary_delete(Request $request)
     {
         $diary = Diary::find($request->id);
-        
-        if($diary->image_path) {
-             Storage::disk('local')->delete('public/image/' . $diary->image_path);
-        }
         $diary->delete();
         
         return redirect('user/home');

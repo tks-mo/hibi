@@ -19,7 +19,7 @@
                 <div class="form-group row">
                     <div class="col-md-8 mx-auto">
                         @if($diary != null)
-                            <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid" width="100%">
+                            <img src="{{ $diary->image_path }}" class="img-fluid" width="100%">
                         @endif
                     </div>
                 </div>

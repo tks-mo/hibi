@@ -37,7 +37,7 @@
                     @if($diary != null)
                         <div class="form-group row">
                             <div class="col-md-8 mx-auto">
-                                <img src="{{ asset('/storage/image/' . $diary->image_path) }}" class="img-fluid">
+                                <img src="{{ $diary->image_path }}" class="img-fluid">
                             </div>
                         </div>
                         
