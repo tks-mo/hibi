@@ -34,7 +34,7 @@
                     
                     <input type="hidden" name="selectedDate" value="{{ $selectedDate }}">
                     
-                    @if($diary != null)
+                    @if($diary['image_path'] != null)
                         <div class="form-group row">
                             <div class="col-md-8 mx-auto">
                                 <img src="{{ $diary->image_path }}" class="img-fluid">
