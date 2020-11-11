@@ -68,17 +68,15 @@ class DiaryController extends Controller
         $day = Day::where('user_id', $user_id)->where('day_date', $selectedDate)->first();
         if ($day != null) {
             $diary = Diary::where('day_id', $day['id'])->first();
+        } else {
+            // dayテーブルにデータがない場合は登録する
+            $day = new Day();
+            $day->day_date = $selectedDate;
+            $day->user_id = $user_id;
+            $day->save();
         }
         
         if(empty($diary)) {
-            
-            // dayテーブルにデータがない場合は登録する
-            if (empty($day)) {
-                $day = new Day();
-                $day->day_date = $selectedDate;
-                $day->user_id = $user_id;
-                $day->save();
-            }
             
             // 日記を新しく登録する
             $diary = new Diary();
@@ -90,8 +88,8 @@ class DiaryController extends Controller
                 $diary->image_path = null;
             }
             
-            $diary->fill(['diary_text' => $request->diary_text]);
-            $diary->fill(['day_id' => $day->id]);
+            $diary->diary_text = $request->diary_text;
+            $diary->day_id = $day->id;
             $diary->save();
             
         } else {
@@ -104,7 +102,7 @@ class DiaryController extends Controller
                 $diary->image_path = Storage::disk('s3')->url($path);
             }
             
-            $diary->fill(['diary_text' => $request->diary_text]);
+            $diary->diary_text = $request->diary_text;
             $diary->save();
             
         }

@@ -53,6 +53,11 @@ class ScheduleController extends Controller
             $registered1 = null;
             $registered2 = null;
             $registered3 = null;
+            // dayテーブルにデータがない場合は登録する
+            $day = new Day();
+            $day->day_date = $selectedDate;
+            $day->user_id = Auth::id();
+            $day->save();
         }
         
         if ($registered1 || $registered2 || $registered3 != null) {
@@ -60,14 +65,6 @@ class ScheduleController extends Controller
             return back()->withInput()->with('registered', '・指定された時間帯は既に登録済みです。');
         } else {
             // どれにもあてはまらない場合は登録する
-            // dayテーブルにデータがない場合は登録する
-            if (empty($day)) {
-                $day = new Day();
-                $day->day_date = $selectedDate;
-                $day->user_id = Auth::id();
-                $day->save();
-            }
-            
             $schedule = new Schedule();
             $schedule->fill([
                 'start_time' => $start_time,
